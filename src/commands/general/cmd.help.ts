@@ -1,6 +1,18 @@
+// License: GPL-3
+// Maintainer: Shadofer#0001
+// Contributors: Otterlord#3653, KittyBorgX#1415
+//
+// File description:
+//     The file for the !help command of the TowerBot
+// 
+// Extra info:
+//     Displays all the 
+//     Makes request to wss://towerverse-beta.herokuapp.com'
+//
+
 import { Message, MessageEmbed } from "discord.js";
-import { App } from "../app";
-import { Command } from "../structures/Command";
+import { App } from "../../app";
+import { Command } from "../../structures/Command";
 
 const command = new Command({
   name: 'help',

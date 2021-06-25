@@ -1,7 +1,20 @@
+// License: GPL-3
+// Maintainer: Shadofer#0001
+// Contributors: Otterlord#3653, KittyBorgX#1415
+//
+// File description:
+//     The file for the !status command of the TowerBot
+// 
+// Extra info:
+//     This file is using the towerverse.js npm package. 
+//     Makes request to wss://towerverse-beta.herokuapp.com'
+//
+
+
 import { MessageEmbed } from "discord.js";
 import { Client } from "towerverse.js"
-import { cooldown } from "../middleware/cooldown";
-import { Command } from "../structures/Command";
+import { cooldown } from "../../middleware/cooldown";
+import { Command } from "../../structures/Command";
 import { performance } from "perf_hooks";
 
 const command = new Command({

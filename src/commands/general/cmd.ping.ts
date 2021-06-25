@@ -1,6 +1,7 @@
+
 import { Message } from "discord.js";
-import { App } from "../app";
-import { Command } from "../structures/Command";
+import { App } from "../../app";
+import { Command } from "../../structures/Command";
 import { MessageEmbed } from "discord.js";
 
 const command = new Command({
