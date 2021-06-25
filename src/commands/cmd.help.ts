@@ -4,7 +4,7 @@ import { Command } from "../structures/Command";
 
 const command = new Command({
   name: 'help',
-  desc: 'Get help with commands',
+  desc: 'Display Help Window',
   args: [
     {'name': 'cmd', required: false}
   ]
