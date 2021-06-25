@@ -1,5 +1,8 @@
-import { App } from './app'
-import * as dotenv from 'dotenv';
+// License: GPL-3.0
+// Maintainer(s): TheOtterlord, KittyBorgX
+
+import { App } from "./app";
+import * as dotenv from "dotenv";
 
 dotenv.config();
 
@@ -8,8 +11,8 @@ const app = new App(token);
 
 app.start();
 
-const events = ["exit", "SIGINT", "SIGUSR1", "SIGUSR2", "SIGTERM"]
+const events = ["exit", "SIGINT", "SIGUSR1", "SIGUSR2", "SIGTERM"];
 
-events.forEach(event => {
-  process.on(event, (e) => app.stop(e))
-})
+events.forEach((event) => {
+  process.on(event, (e) => app.stop(e));
+});
