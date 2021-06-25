@@ -16,7 +16,7 @@ import { cooldown } from "../../middleware/cooldown";
 import { Command } from "../../structures/Command";
 
 const command = new Command({
-  name: "totalTravellers",
+  name: "travellers",
   desc: "Shows total number of travellers",
   args: [{ name: "server", required: false }],
 });

@@ -1,13 +1,12 @@
 // License: GPL-3
-// Maintainer: Shadofer#0001
-// Contributors: Otterlord#3653, KittyBorgX#1415
+// Maintainer: Otterlord#3653, KittyBorgX#1415
+// Contributors:
 //
 // File description:
-//     The file for the !online command of the TowerBot
+//     The file for the !status command of the TowerBot
 //
 // Extra info:
 //     This file is using the towerverse.js npm package.
-//     Makes request to wss://towerverse-beta.herokuapp.com'
 //
 
 import { Message, MessageEmbed } from "discord.js";
