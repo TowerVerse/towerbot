@@ -36,7 +36,7 @@ command.setExecutor(async (app, msg, args) => {
 
   if (args[0] !== "beta") pings.push(["stable", await ping()]);
   if (args[0] !== "stable")
-    pings.push(["beta", await ping("wss://towerverse-beta.herokuapp.com")]);
+    pings.push(["beta", await ping("wss://towerverse.herokuapp.com")]);
 
   msg.channel.send(
     new MessageEmbed().setTitle("TowerVerse Status").addFields(
