@@ -9,7 +9,6 @@ import { Command } from "../../structures/Command";
 const command = new Command({
   name: "online",
   desc: "Shows number of online travellers",
-  args: [{ name: "server", required: false }],
 });
 
 const client = new Client();
