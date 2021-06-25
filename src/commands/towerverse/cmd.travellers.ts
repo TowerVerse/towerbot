@@ -17,7 +17,7 @@ command.setExecutor(async (app, msg, args) => {
     .totalTravellers()
     .then((data) => {
       const Embed = new MessageEmbed()
-        .setTitle("Number of online travellers!")
+        .setTitle("Total number of travellers!")
         .setAuthor(`${msg.author.username}`, msg.author.displayAvatarURL())
         .setDescription(`Found ${data} traveller(s)`)
         .setColor("#fb644c");
