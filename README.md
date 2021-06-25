@@ -6,7 +6,7 @@ The Discord bot for the TowerVerse Discord server.
 
 Clone the repository and navigate to the folder.
 
-Create a `.env` file and add a value `BOT_TOKEN` set to your bot token.
+Create a `.env` file and add a values specified in `example.env`
 
 To run this bot for development, use.
 

@@ -3,10 +3,12 @@
 
 import { Client } from "discord.js";
 import { Commands } from "./classes/commands";
+import { Client as TowerVerseClient } from "towerverse.js"
 
 export class App {
   bot: Client = new Client();
   commands: Commands = new Commands(this, "!");
+  client: TowerVerseClient = new TowerVerseClient()
 
   private token: string;
 
@@ -32,6 +34,21 @@ export class App {
         .catch((err) => {
           res(err.message);
         });
+
+      this.client.connect().then(() => {
+        this.client.loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!).then(() => {
+          console.log(
+            "Successfully logged into towerverse as",
+            this.client.traveller?.name
+          )
+        })
+      }).catch(err => {
+        console.error(
+          "Failed to login to towerverse with error:",
+          err.message
+        )
+        process.exit()
+      })
 
       this.bot.on("ready", () => {
         this.bot.user?.setActivity({
