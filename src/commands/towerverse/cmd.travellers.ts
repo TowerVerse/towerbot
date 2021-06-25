@@ -16,15 +16,15 @@ const client = new Client();
 
 command.use(cooldown(10000));
 command.setExecutor(async (app, msg, args) => {
-  client.connect("wss://towerverse-beta.herokuapp.com").then(async () => {
+  client.connect("wss://towerverse.herokuapp.com").then(async () => {
     console.log("Connected to server");
     client
-      .listTravellers()
+      .totalTravellers()
       .then((data) => {
         const Embed = new MessageEmbed()
           .setTitle("Number of online travellers!")
           .setAuthor(`${msg.author.username}`, msg.author.displayAvatarURL())
-          .setDescription(`Found ${data.length} traveller`)
+          .setDescription(`Found ${data} traveller(s)`)
           .setColor("#fb644c");
 
         msg.channel.send(Embed);
