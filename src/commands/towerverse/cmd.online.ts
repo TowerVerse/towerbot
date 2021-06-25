@@ -1,11 +1,10 @@
 // License: GPL-3.0
 // Maintainer(s): TheOtterlord, KittyBorgX
 
-import { Message, MessageEmbed } from "discord.js";
+import { MessageEmbed } from "discord.js";
 import { Client } from "towerverse.js";
 import { cooldown } from "../../middleware/cooldown";
 import { Command } from "../../structures/Command";
-import { performance } from "perf_hooks";
 
 const command = new Command({
   name: "online",
@@ -16,9 +15,7 @@ const command = new Command({
 const client = new Client();
 
 command.use(cooldown(10000));
-command.setExecutor(async (app, msg, args) => {
-  const pings: any[] = [];
-
+command.setExecutor(async (app, msg) => {
   await client.connect();
 
   const num = await client.onlineTravellers();
