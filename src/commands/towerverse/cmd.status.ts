@@ -1,13 +1,5 @@
-// License: GPL-3
-// Maintainer: Otterlord#3653, KittyBorgX#1415
-// Contributors:
-//
-// File description:
-//     The file for the !status command of the TowerBot
-//
-// Extra info:
-//     This file is using the towerverse.js npm package.
-//
+// License: GPL-3.0
+// Maintainer(s): TheOtterlord, KittyBorgX
 
 import { MessageEmbed } from "discord.js";
 import { Client } from "towerverse.js";

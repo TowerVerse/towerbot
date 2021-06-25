@@ -1,13 +1,5 @@
-// License: GPL-3
-// Maintainer: Otterlord#3653, KittyBorgX#1415
-// Contributors:
-//
-// File description:
-//     The file for the !ping command of the TowerBot
-//
-// Extra info:
-//     Displays the latency between you and the Discord API
-//
+// License: GPL-3.0
+// Maintainer(s): TheOtterlord, KittyBorgX
 
 import { Message } from "discord.js";
 import { App } from "../../app";

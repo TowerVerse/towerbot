@@ -1,12 +1,6 @@
-// License: GPL-3
-// Maintainer: Otterlord#3653, KittyBorgX#1415
-// Contributors:
-//
-// File description:
-//     The file for the !help command of the TowerBot
-//
-// Extra info:
-//
+// License: GPL-3.0
+// Maintainer(s): TheOtterlord, KittyBorgX
+
 import { Message, MessageEmbed } from "discord.js";
 import { App } from "../../app";
 import { Command } from "../../structures/Command";
