@@ -24,9 +24,6 @@ function ping(url?: string) {
         client.disconnect();
         res(t2 - t1);
       })
-      .catch(() => {
-        res("Cannot connect to server");
-      });
   });
 }
 
@@ -34,9 +31,14 @@ command.use(cooldown(10000));
 command.setExecutor(async (app, msg, args) => {
   const pings: any[] = [];
 
-  if (args[0] !== "beta") pings.push(["stable", await ping()]);
-  if (args[0] !== "stable")
-    pings.push(["beta", await ping("wss://towerverse.herokuapp.com")]);
+  try {
+    if (args[0] !== "beta") pings.push(["stable", await ping()]);
+    if (args[0] !== "stable")
+      pings.push(["beta", await ping("wss://towerverse.herokuapp.com")]);
+  } catch (err) {
+    app.reportError(`${err}`, msg.content)
+    return msg.reply('Failed to connect to towerverse')
+  }
 
   msg.channel.send(
     new MessageEmbed().setTitle("TowerVerse Status").addFields(

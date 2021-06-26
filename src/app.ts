@@ -60,9 +60,11 @@ export class App {
   }
 
   async connect() {
-    await this.client.connect().catch(err => {
-      if (err.message !== 'Connection already established') throw Error(err)
-    })
+    try {
+      await this.client.connect().catch()
+    } catch (err) {
+      if (!err.message.includes('Connection already established')) throw err
+    }
     if (!this.client.traveller) await this.client.loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!)
     return this
   }
@@ -77,7 +79,7 @@ export class App {
     return await dm.send(
       new MessageEmbed()
       .setTitle('Bot Error')
-      .setColor('#ff00000')
+      .setColor('#ff0000')
       .setDescription(
         error.concat(...args.map(arg => `\n${arg}`))
       )
@@ -92,6 +94,7 @@ export class App {
       const user = await this.bot.users.fetch(process.env.MAINTAINER!);
       await this.reportError(`${error}`)
     }
+    await this.client?.traveller?.logout()
     this.bot.destroy();
     console.error(`Stopped bot with event '${event}'`);
     console.log(error)

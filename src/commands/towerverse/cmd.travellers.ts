@@ -26,7 +26,7 @@ command.setExecutor(async (app, msg, args) => {
     })
     .catch((err) => {
       console.log(err);
-      app.reportError(err, msg.content, `<#${msg.channel.id}>`)
+      app.reportError(err, msg.content)
     });
 });
 
