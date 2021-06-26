@@ -59,18 +59,38 @@ export class App {
     });
   }
 
+  async connect() {
+    await this.client.connect().catch(err => {
+      if (err.message !== 'Connection already established') throw Error(err)
+    })
+    if (!this.client.traveller) await this.client.loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!)
+    return this
+  }
+
+  async reportError(error: string, ...args: string[]) {
+    console.error(error, ...args)
+
+    if (!process.env.MAINTAINER) return
+
+    const user = await this.bot.users.fetch(process.env.MAINTAINER!)
+    const dm = await user.createDM()
+    return await dm.send(
+      new MessageEmbed()
+      .setTitle('Bot Error')
+      .setColor('#ff00000')
+      .setDescription(
+        error.concat(...args.map(arg => `\n${arg}`))
+      )
+    )
+  }
+
   /**
    * Stop the bot
    */
   async stop(event: string, error) {
     if (process.env.MAINTAINER && event === 'uncaughtException') {
       const user = await this.bot.users.fetch(process.env.MAINTAINER!);
-      await (await user.createDM()).send(
-        new MessageEmbed()
-        .setTitle('Bot Crashed!')
-        .setColor('#ff0000')
-        .setDescription(`The bot has crashed with an error: ${error}`)
-      )
+      await this.reportError(`${error}`)
     }
     this.bot.destroy();
     console.error(`Stopped bot with event '${event}'`);

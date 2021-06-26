@@ -12,7 +12,7 @@ const command = new Command({
 
 command.use(cooldown(10000));
 command.setExecutor(async (app, msg) => {
-  const num = await app.client.onlineTravellers();
+  const num = await (await app.connect()).client.onlineTravellers();
 
   msg.channel.send(
     new MessageEmbed()

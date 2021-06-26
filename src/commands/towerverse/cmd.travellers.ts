@@ -13,7 +13,7 @@ const command = new Command({
 
 command.use(cooldown(10000));
 command.setExecutor(async (app, msg, args) => {
-  app.client
+  (await app.client.connect())
     .totalTravellers()
     .then((data) => {
       const Embed = new MessageEmbed()
@@ -26,7 +26,7 @@ command.setExecutor(async (app, msg, args) => {
     })
     .catch((err) => {
       console.log(err);
-      msg.channel.send("Oops, something went wrong")
+      app.reportError(err, msg.content, `<#${msg.channel.id}>`)
     });
 });
 
