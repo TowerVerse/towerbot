@@ -11,8 +11,8 @@ const app = new App(token);
 
 app.start();
 
-const events = ["exit", "SIGINT", "SIGUSR1", "SIGUSR2", "SIGTERM"];
+const events = ["SIGINT", "SIGUSR1", "SIGUSR2", "SIGTERM", "uncaughtException"];
 
 events.forEach((event) => {
-  process.on(event, (e) => app.stop(e));
+  process.on(event, (err) => app.stop(event, err));
 });

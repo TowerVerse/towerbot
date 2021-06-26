@@ -1,7 +1,7 @@
 // License: GPL-3.0
 // Maintainer(s): TheOtterlord, KittyBorgX
 
-import { Client } from "discord.js";
+import { Client, MessageEmbed } from "discord.js";
 import { Commands } from "./classes/commands";
 import { Client as TowerVerseClient } from "towerverse.js"
 
@@ -62,8 +62,19 @@ export class App {
   /**
    * Stop the bot
    */
-  stop(event: string) {
+  async stop(event: string, error) {
+    if (process.env.MAINTAINER && event === 'uncaughtException') {
+      const user = await this.bot.users.fetch(process.env.MAINTAINER!);
+      await (await user.createDM()).send(
+        new MessageEmbed()
+        .setTitle('Bot Crashed!')
+        .setColor('#ff0000')
+        .setDescription(`The bot has crashed with an error: ${error}`)
+      )
+    }
     this.bot.destroy();
     console.error(`Stopped bot with event '${event}'`);
+    console.log(error)
+    process.exit()
   }
 }
