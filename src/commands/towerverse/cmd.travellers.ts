@@ -26,6 +26,7 @@ command.setExecutor(async (app, msg, args) => {
     })
     .catch((err) => {
       console.log(err);
+      msg.channel.send("Oops, something went wrong")
     });
 });
 
