@@ -16,7 +16,7 @@ command.setExecutor((app: App, msg: Message, args) => {
     const command = app.commands.cache.get(args[0]);
     if (!command) return msg.reply("Command does not exist");
     const embed = new MessageEmbed()
-      .setTitle(`${app.commands.prefix}${command.name}`)
+      .setTitle(`${app.commands.prefix}${command.name} ${command.args.map(arg => `\`${arg.name}${arg.required ? ': required' : ''}\``).join(', ')}`)
       .setDescription(command.desciption)
       .setColor(0xffffff);
     return msg.channel.send(embed);
@@ -30,7 +30,7 @@ command.setExecutor((app: App, msg: Message, args) => {
 
   app.commands.cache.map((command) => {
     embed.addField(
-      `${app.commands.prefix}${command.name}`,
+      `${app.commands.prefix}${command.name} ${command.args.map(arg => `\`${arg.name}${arg.required ? ': required' : ''}\``).join(', ')}`,
       command.desciption,
       true
     );

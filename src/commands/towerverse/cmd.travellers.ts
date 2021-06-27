@@ -7,8 +7,7 @@ import { Command } from "../../structures/Command";
 
 const command = new Command({
   name: "travellers",
-  desc: "Shows total number of travellers",
-  args: [{ name: "server", required: false }],
+  desc: "Shows total number of travellers"
 });
 
 command.use(cooldown(10000));
