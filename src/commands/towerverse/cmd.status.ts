@@ -13,17 +13,13 @@ const command = new Command({
   args: [{ name: "server", required: false }],
 });
 
-function ping(url?: string) {
-  return new Promise((res, rej) => {
-    new Client()
-      .connect(url)
-      .then(async (client) => {
-        const t1 = performance.now();
-        await client.onlineTravellers();
-        const t2 = performance.now();
-        client.disconnect();
-        res(t2 - t1);
-      })
+function ping(client: Client) {
+  return new Promise(async (res, rej) => {
+    if (!client?.traveller) await client.loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!)
+    const t1 = performance.now();
+    await client.onlineTravellers();
+    const t2 = performance.now();
+    res(t2 - t1);
   });
 }
 
@@ -32,9 +28,9 @@ command.setExecutor(async (app, msg, args) => {
   const pings: any[] = [];
 
   try {
-    if (args[0] !== "beta") pings.push(["stable", await ping()]);
+    if (args[0] !== "beta") pings.push(["stable", await ping(app.client)]);
     if (args[0] !== "stable")
-      pings.push(["beta", await ping("wss://towerverse.herokuapp.com")]);
+      pings.push(["beta", await ping(await (await new Client().connect("wss://towerverse-beta.herokuapp.com")).loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!))]);
   } catch (err) {
     app.reportError(`${err}`, msg.content)
     return msg.reply('Failed to connect to towerverse')

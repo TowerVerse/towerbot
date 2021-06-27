@@ -90,8 +90,7 @@ export class App {
    * Stop the bot
    */
   async stop(event: string, error) {
-    if (process.env.MAINTAINER && event === 'uncaughtException') {
-      const user = await this.bot.users.fetch(process.env.MAINTAINER!);
+    if (event === 'uncaughtException') {
       await this.reportError(`${error}`)
     }
     await this.client?.traveller?.logout()

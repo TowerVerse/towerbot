@@ -13,7 +13,7 @@ const command = new Command({
 
 command.use(cooldown(10000));
 command.setExecutor(async (app, msg, args) => {
-  (await app.client.connect())
+  (await app.connect()).client
     .totalTravellers()
     .then((data) => {
       const Embed = new MessageEmbed()
