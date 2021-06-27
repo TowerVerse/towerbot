@@ -15,10 +15,12 @@ const command = new Command({
 
 function ping(client: Client) {
   return new Promise(async (res, rej) => {
-    if (!client?.traveller) await client.loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!)
+    const logout = !!client.traveller
+    if (!client.traveller) await client.loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!)
     const t1 = performance.now();
     await client.onlineTravellers();
     const t2 = performance.now();
+    if (logout) await client.traveller?.logout()
     res(t2 - t1);
   });
 }
