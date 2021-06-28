@@ -35,8 +35,8 @@ export class App {
           res(err.message);
         });
 
-      this.client.on('send', data => console.log(`Sent event '${data.event}'`))
-      this.client.on('recv', data => console.log(`Received event '${data.event}'`))
+      this.client.on('send', event => console.log(`Sent event '${event}'`))
+      this.client.on('recv', event => console.log(`Received event '${event}'`))
 
       this.client.connect().then(() => {
         this.client.loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!).then(() => {
