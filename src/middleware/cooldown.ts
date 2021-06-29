@@ -7,6 +7,8 @@ export const cooldown = (timeout: number) => {
   const cooldowns = new Set();
 
   const mid: MiddlewareMethod = (app, msg, args, next) => {
+    if (msg.member?.hasPermission('ADMINISTRATOR')) return next()
+
     if (cooldowns.has(msg.member?.user.id))
       return msg.reply(
         `You must wait before activating this command. Cooldown is ${(
