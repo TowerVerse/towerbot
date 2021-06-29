@@ -27,22 +27,22 @@ export class App {
           res(this);
           this.commands.register(`${__dirname}/commands`);
           console.log(
-            "Successfully logged into discord as",
-            this.bot.user?.tag
+            "\x1b[32mSuccessfully logged into discord as\x1b[0m",
+            `\x1b[1m\x1b[37m${this.bot.user?.tag}\x1b[0m`
           );
         })
         .catch((err) => {
           res(err.message);
         });
 
-      this.client.on('send', event => console.log(`Sent event '${event}'`))
-      this.client.on('recv', data => console.log(`Received event '${data.event}'`))
+      this.client.on('send', event => console.log(`\x1b[36mSent event '${event}'\x1b[0m`))
+      this.client.on('recv', data => console.log(`\x1b[35mReceived event '${data.event}'\x1b[0m`))
 
-      this.client.connect().then(() => {
+      this.client.connect('wss://towerverse-beta.herokuapp.com').then(() => {
         this.client.loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!).then(() => {
           console.log(
-            "Successfully logged into towerverse as",
-            this.client.traveller?.name
+            "\x1b[32mSuccessfully logged into towerverse as\x1b[0m",
+            `\x1b[1m\x1b[37m${this.client.traveller?.name}\x1b[0m`
           )
         })
       }).catch(err => {
@@ -99,7 +99,7 @@ export class App {
     await this.client?.traveller?.logout()
     this.bot.destroy();
     console.error(`Stopped bot with event '${event}'`);
-    console.log(error)
+    console.log(`\x1b[1m\x1b[31m${error}\x1b[0m`)
     process.exit()
   }
 }

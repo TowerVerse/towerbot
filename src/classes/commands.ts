@@ -43,6 +43,8 @@ export class Commands {
 
       if (!this.cache.has(command)) return;
 
+      console.log(`\x1b[33mExecuting '${msg}'\x1b[0m`)
+
       this.cache.get(command)?.execute(this.app, msg);
     });
   }
