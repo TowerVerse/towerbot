@@ -38,7 +38,7 @@ export class App {
       this.client.on('send', event => console.log(`\x1b[36mSent event '${event}'\x1b[0m`))
       this.client.on('recv', data => console.log(`\x1b[35mReceived event '${data.event}'\x1b[0m`))
 
-      this.client.connect('wss://towerverse-beta.herokuapp.com').then(() => {
+      this.client.connect().then(() => {
         this.client.loginTraveller(process.env.TRAVELLER_EMAIL!, process.env.TRAVELLER_PASSWORD!).then(() => {
           console.log(
             "\x1b[32mSuccessfully logged into towerverse as\x1b[0m",
